@@ -1,0 +1,12 @@
+<ng-template #popTemplate>Just another: {{content}}</ng-template>
+
+<div>
+    <button type="button" class="btn btn-warning" style="margin:50px 0 0 0;"
+            (click)="pop.show()"
+            [popover]="popTemplate" 
+            popoverTitle="configure node"
+            triggers="mouseenter:mouseleave"
+            >
+      TemplateRef binding
+  </button>
+</div>

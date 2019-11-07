@@ -10,7 +10,8 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { NativeScriptWorkerPlugin } = require("nativescript-worker-loader/NativeScriptWorkerPlugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const { AngularCompilerPlugin } = require("@ngtools/webpack");
-
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+module.exports = XMLHttpRequest;
 module.exports = env => {
     // Add your custom Activities, Services and other Android app components here.
     const appComponents = [
@@ -45,6 +46,7 @@ module.exports = env => {
         hmr, // --env.hmr,
     } = env;
     const externals = (env.externals || []).map((e) => { // --env.externals
+
         return new RegExp(e + ".*");
     });
 
@@ -66,7 +68,9 @@ module.exports = env => {
     const config = {
         mode: uglify ? "production" : "development",
         context: appFullPath,
-        externals,
+            externals:[{
+                xmlhttprequest: '{XMLHttpRequest:XMLHttpRequest}'
+            }],
         watchOptions: {
             ignored: [
                 appResourcesFullPath,
@@ -204,6 +208,7 @@ module.exports = env => {
                 },
             ],
         },
+
         plugins: [
             // Define useful constants like TNS_WEBPACK
             new webpack.DefinePlugin({

@@ -1,0 +1,73 @@
+
+<div class="image">
+
+
+
+  <mat-toolbar style="background-color:#3CBCBC; ">
+          <mat-toolbar-row>
+              <button mat-button (click)="home()"><img src="assets/img/dp.png" style="width:50px; height:50px;"></button>
+              <span class="example-fill-remaining-space"></span>
+                  <span class="align-center"></span>
+                  <span class="example-spacer"></span>
+                  <button mat-button (click)="getTreeData()"> <img src="assets/img/refresh.png" style="width:60px; height:50px;"></button>
+  
+                  <label  style="position: absolute;left: 91%;" >  {{textareausername}}</label>
+                  <button style="position: absolute;left: 95%;" mat-button (click)="logout()"><img src="assets/img/logout.png" style="width:40px; height:40px;"></button>
+  
+          </mat-toolbar-row>
+  
+  
+  
+  </mat-toolbar>
+  
+  <br>
+  <br>
+  
+  
+  
+  
+  
+          
+  
+  
+  <p>
+    <span popover="Hover over trigger event"
+          triggers="" #pop="bs-popover">
+    </span>
+  </p>
+  
+  <div id="mynetwork" #siteConfigNetwork></div>
+  
+  
+  <style type="text/css">
+      #mynetwork {
+        margin-left: 19px;
+          width: 1860px;
+          height: 700px;
+          border: 2px solid #3CBCBC;
+          background-color: antiquewhite;
+      }
+  </style>
+  
+
+  
+ 
+      
+  
+   
+
+  <mat-toolbar style="background-color:#B7D9EB; width: 35% ;height: 5%;;margin-left:32%; position: absolute;
+  top: 92%;">
+          <mat-toolbar-row>
+            
+              <label style="margin-top: 5px ;margin-right: 8px">Employees : </label><select style="margin-right: 30px"   id="s1"  [(ngModel)]="s1"></select>
+              <label style="margin-top: 5px;margin-right: 8px" >Projects : </label><select style="margin-right: 30px"  id="s2"  [(ngModel)]="s2"> </select>
+              <button style="margin-right: 10px" mat-button (click)="addEdgetest()" color="primary"><mat-icon style="font-size: 50 !important">add_circle</mat-icon></button>
+              <button   mat-button (click)="deleteEdgetest()" color="primary"><mat-icon style="font-size: 50 !important">delete</mat-icon></button>
+     
+          </mat-toolbar-row>
+  
+  </mat-toolbar>
+
+  
+</div>

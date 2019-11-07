@@ -1,0 +1,5 @@
+<alert *ngIf="isOpen" type="success" dismissOnTimeout="3000" (onClosed)="isOpen = false">
+  5 sec timeout
+</alert>
+
+<button type="button" class="btn btn-primary" (click)="isOpen = true">Show again</button>

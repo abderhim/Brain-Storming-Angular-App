@@ -1,0 +1,60 @@
+<div class="image">
+
+        <mat-toolbar style="background-color:#3CBCBC; ">
+                <mat-toolbar-row>
+                        <button mat-button (click)="scrambleAndRefreshAll()"><img src="assets/img/dp.png" style="width:50px; height:50px;"></button>
+                        <span class="example-fill-remaining-space"></span>
+                        <span class="align-center"></span>
+                        <span class="example-spacer"></span>
+                        <button mat-button (click)="graph()"> <img src="assets/img/gp.png" style=" margin-left:10px ;width:70px; height:60px;"></button>
+        
+                        <label  style="position: absolute;left: 91%;" >  {{textareausername}}</label>
+                        <button style="position: absolute;left: 95%;" mat-button (click)="logout()"><img src="assets/img/logout.png" style="width:40px; height:40px;"></button>
+        
+                </mat-toolbar-row>
+        
+        
+        
+        </mat-toolbar>
+    
+    <br>
+    <br>
+    
+    <mat-toolbar style="background-color:#B7D9EB; width: 20% ;height: 5%;;margin-left:40%; position: absolute;
+top: 22%;">
+        <mat-toolbar-row>
+                <button   mat-button (click)="OnTapp4()" color="primary"><mat-icon style="font-size: 50 !important">add_to_photos</mat-icon></button>
+                <button style="margin-left: 70px ;margin-right:80px ;width:70px; " mat-button (click)="deletejson()"
+                color="primary"><mat-icon>delete</mat-icon></button>
+                <button    mat-raised-button (click)="OnTapp10()" color="primary"><mat-icon style="font-size: 50 !important;
+                        ">people</mat-icon></button>
+                <br>
+                <br>
+               
+                
+                        
+        </mat-toolbar-row>
+
+</mat-toolbar>
+            
+    
+    <ag-grid-angular [rowData]="rowData | async" [rowData]="rowDataa | async"
+            style="width: 1200px; height: 800px;  color: rgb(124, 60, 196) ; position: absolute;
+            top: 75%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)"
+            class="ag-theme-balham" [autoGroupColumnDef]="autoGroupColumnDef" [columnDefs]="columnDefs"
+            rowSelection="multiple" (cell-clicked)="toggle()" [overlayLoadingTemplate]="overlayLoadingTemplate"
+            [overlayNoRowsTemplate]="overlayNoRowsTemplate" id="myGrid" [animateRows]="true" [getRowNodeId]="getRowNodeId"
+            (gridReady)="onGridReady($event)" (cellValueChanged)="OnTapp3()" [gridOptions]="gridOptions">
+    </ag-grid-angular>
+    
+    
+    
+    <br>
+    
+    
+    
+    
+    </div>

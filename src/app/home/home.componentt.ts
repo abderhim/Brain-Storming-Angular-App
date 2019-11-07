@@ -13,10 +13,10 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  templateUrl: './home.componentt.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponentt implements OnInit, AfterViewInit {
 
   @ViewChild('agGrid') agGrid: AgGridNg2;
 
@@ -54,10 +54,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
    
     {
       headerName: 'Name', field: 'name', sortable: true, filter: true, resizable: true, editable: true, width: 250, cellClass: "cell-number", cellRenderer: 'agAnimateShowChangeCellRenderer',
-
-    },
-    {
-      headerName: 'Profession', field: 'profession', sortable: true, filter: true, resizable: true, editable: true, width: 290, cellClass: "cell-number", cellRenderer: 'agAnimateShowChangeCellRenderer',
 
     }
   ];
@@ -125,7 +121,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
-    this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/myFoxxCollectionts');
+    this.rowData = this.http.get('http://localhost:8529/_db/_system/projects/getdocumentsbycollectionname/projects');
     console.log(this.textareausername);
     if (this.textareausername == undefined) {
       this.router.navigate(["login"]);
@@ -191,7 +187,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
 
 
-      this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/updatebyKeyy/myFoxxCollectionts/' + selectedRowsString3 + '/' + selectedRowsString + '/' + selectedRowsString2);
+      this.rowData = this.http.get('http://localhost:8529/_db/_system/projects/updatebyKeyy/projects/' + selectedRowsString3 + '/' + selectedRowsString );
       // this.rowData = this.http.get('http://localhost:8529/_db/my_test_db/fvd/getdocumentsbycollectionname/myFoxxCollectionts');
     }
 
@@ -209,11 +205,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   OnTapp4() {
-  var uuid = UUID.UUID();
-  var na = "-";
-  var pr = "-";
-   
-    this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/insertbyKey/myFoxxCollectionts/' + uuid + '/' + "-" + '/' + "-");
+var uuid = UUID.UUID();
+var na = "-";
+var pr = "-";
+
+    this.rowData = this.http.get('http://localhost:8529/_db/_system/projects/insertbyKey/projects/' + uuid + '/' + "-" );
     // this.http.put('http://localhost:8529/_db/my_test_db/fvd/createedgebyname/'+this.edge+this.keyf+this.keyt+this.keyedge, {headers:''});
     // this.myfoxx=this.collectionname;
     // this.rowData = this.http.get('http://localhost:8529/_db/my_test_db/fvd/getdocumentsbycollectionname/'+this.myfoxx);
@@ -253,7 +249,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
  // }
 
-
  OnTapp10(){
   let navigationExtras: NavigationExtras = {
     queryParams: {
@@ -262,28 +257,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     }
   };
-  this.router.navigate(["projects"],navigationExtras);
+  this.router.navigate(["home"],navigationExtras);
 
  }
-
 
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-
     params.api.sizeColumnsToFit();
-
-    const socket = socketIo('http://localhost:3000/');
+    const socket = socketIo('http://localhost:4000/');
     socket.on('connect', response => {
       //return this.observer.next(response.data);
-
       console.log('connected');
     });
     socket.on('insert/update', response => {
-
-
-      this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/myFoxxCollectionts').subscribe(
+      this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/projects').subscribe(
         data => {
 
 
@@ -309,9 +298,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
         if (response.name === undefined) {
 
-          this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/myFoxxCollectionts');
-       //   this.alerts.setMessage('new row inserted with key : ' + response._key, 'warn');
-          this.toastr.successToastr('new row inserted with key : ' + response._key, '');
+          this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/projects');
+         // this.alerts.setMessage('new row inserted with key : ' + response._key, 'warn');
+         this.toastr.successToastr('new row inserted with key : ' + response._key, '');
 
         }
         //  const data = {_key:response._key , name:response.name ,profession: response.profession};
@@ -320,9 +309,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
         rownode.setDataValue("profession", response.profession);
         //    this.rowData = this.http.get('http://localhost:8529/_db/my_test_db/typescript/getdocumentsbycollectionname/myFoxxCollectionts');
        // this.alerts.setMessage(' row updated with key : ' + response._key, 'success');
-        this.toastr.successToastr('row updated with key : ' + response._key, 'success');
-
         // this.notifier.notify( 'success', 'You are awesome! I mean it!', 'THAT_NOTIFICATION_ID' );
+        this.toastr.successToastr('row updated with key : ' + response._key, 'success');
 
 
         console.log(rownode);
@@ -349,10 +337,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
         // rownode.setDataValue( "name",response.name );
         //rownode.setDataValue( "profession",response.profession );
         // this.gridOptions.api.refreshRows(rownode);
-        this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/myFoxxCollectionts');
+        this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/projects');
         //    this.rowData = this.http.get('http://localhost:8529/_db/my_test_db/typescript/getdocumentsbycollectionname/myFoxxCollectionts');
-     //   this.alerts.setMessage(' row deleted with key : ' + response._key, 'error');
-        this.toastr.warningToastr('row deleted with key : ' + response._key, '');
+      //  this.alerts.setMessage(' row deleted with key : ' + response._key, 'error');
+      this.toastr.warningToastr('row deleted with key : ' + response._key, '');
 
         console.log('deleted');
 
@@ -371,7 +359,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   scrambleAndRefreshAll() {
-    this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/myFoxxCollectionts');
+    this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/getdocumentsbycollectionname/projects');
   }
 
   logout() {
@@ -388,6 +376,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
+
+
+  deletejson() {
+
+    if (encodeURIComponent(JSON.stringify(this.gridOptions.api.getSelectedRows())) == "%5B%5D") {
+
+     // this.alerts.setMessage(' please select rows to delete ', 'warn');
+     this.toastr.warningToastr('please select rows to delete !', 'Oops!');
+
+    }
+
+    else {
+      console.log(encodeURIComponent(JSON.stringify(this.gridOptions.api.getSelectedRows())));
+      this.rowData = this.http.get('http://localhost:8529/_db/_system/projects/remove/' + encodeURIComponent(JSON.stringify(this.gridOptions.api.getSelectedRows())));
+
+    }
+
+  }
+
   graph() {
  
     let navigationExtras: NavigationExtras = {
@@ -400,24 +407,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.router.navigate(["graph"],navigationExtras);
   }
 
-
-
-  deletejson() {
-
-    if (encodeURIComponent(JSON.stringify(this.gridOptions.api.getSelectedRows())) == "%5B%5D") {
-
-      //this.alerts.setMessage(' please select rows to delete ', 'warn');
-      this.toastr.warningToastr('please select rows to delete !', 'Oops!');
-
-    }
-
-    else {
-      console.log(encodeURIComponent(JSON.stringify(this.gridOptions.api.getSelectedRows())));
-      this.rowData = this.http.get('http://localhost:8529/_db/_system/dgr/remove/' + encodeURIComponent(JSON.stringify(this.gridOptions.api.getSelectedRows())));
-
-    }
-
-  }
 
 
 }
